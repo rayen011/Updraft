@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://crbqr24g5k10l"]
+
+[ext_resource type="Texture2D" uid="uid://b647j4cqa3leg" path="res://assets/sprites/animation/background_animation/background_0000s_0000_Layer-4.png" id="1_f10td"]
+[ext_resource type="Texture2D" uid="uid://brtbaskjv5nvx" path="res://assets/sprites/animation/background_animation/background_0000s_0001_Layer-3.png" id="2_3w25c"]
+[ext_resource type="Texture2D" uid="uid://gebu0qxnplq6" path="res://assets/sprites/animation/background_animation/background_0000s_0002_Layer-2.png" id="3_sxvwp"]
+[ext_resource type="Texture2D" uid="uid://dirsmvi1mfkpk" path="res://assets/sprites/animation/background_animation/background_0000s_0003_Layer-1.png" id="4_pgx88"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w488u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f10td")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3w25c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sxvwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pgx88")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1ovw"]
+size = Vector2(32, 32)
+
+[node name="lava" type="Node2D"]
+z_index = 1
+position = Vector2(377, 1345)
+scale = Vector2(25.93, 25.93)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w488u")
+autoplay = "default"
+frame_progress = 0.702561
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_c1ovw")

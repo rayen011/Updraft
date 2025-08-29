@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://tcnpxwhmdpws"]
+
+[ext_resource type="Script" uid="uid://cqjv2ujc5ogp3" path="res://scripts/player/umbrella.gd" id="1_bi66l"]
+
+[sub_resource type="Gradient" id="Gradient_hqkp3"]
+offsets = PackedFloat32Array(0.038961, 1)
+colors = PackedColorArray(0.847059, 0.611765, 0.2, 1, 1, 0.180392, 0.427451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bi66l"]
+gradient = SubResource("Gradient_hqkp3")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.935, -0.055)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5y2q"]
+radius = 76.9415
+
+[node name="Umbrella" type="Node2D"]
+script = ExtResource("1_bi66l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_bi66l")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_r5y2q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="durabilityBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.26
+offset_top = -64.0
+offset_right = 50.26
+offset_bottom = -50.615
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(50, 13.5)
+size_flags_horizontal = 0
+value = 70.0
+show_percentage = false
+
+[node name="handMarker" type="Marker2D" parent="."]
+position = Vector2(1, 59)

@@ -11,5 +11,27 @@ config_version=5
 [application]
 
 config/name="UpDraft"
+run/main_scene="uid://c5tp1e03qcfd"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=768
+window/size/viewport_height=1024
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="umbrella"
+2d_physics/layer_3="walls"
+2d_physics/layer_4="lava_rock"
+2d_physics/layer_5="lava"
+
+[physics]
+
+2d/default_gravity=0.0
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
