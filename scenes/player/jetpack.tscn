@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://tcnpxwhmdpws"]
+[gd_scene load_steps=9 format=3 uid="uid://de2l0eilg41gh"]
 
-[ext_resource type="Script" uid="uid://cqjv2ujc5ogp3" path="res://scripts/player/umbrella.gd" id="1_bi66l"]
-[ext_resource type="Resource" uid="uid://c50tt217emvml" path="res://resources/umbrella.tres" id="2_lv31h"]
-[ext_resource type="Texture2D" uid="uid://bkym38knaiyld" path="res://assets/sprites/ambrellas/ambrella_1.png" id="2_r5y2q"]
-[ext_resource type="Script" uid="uid://dlvqp6id4e7fb" path="res://addons/trail_2d/trail_2d.gd" id="3_1dl8g"]
+[ext_resource type="Script" uid="uid://cqjv2ujc5ogp3" path="res://scripts/player/umbrella.gd" id="1_8v5v3"]
+[ext_resource type="Resource" uid="uid://bxw574tf2flee" path="res://resources/jetpack.tres" id="2_8v5v3"]
+[ext_resource type="Script" uid="uid://dlvqp6id4e7fb" path="res://addons/trail_2d/trail_2d.gd" id="3_7kc6f"]
+[ext_resource type="Texture2D" uid="uid://crpps4l8amcnj" path="res://assets/sprites/ambrellas/jetpack.png" id="4_xadvp"]
 
 [sub_resource type="Curve" id="Curve_lv31h"]
 _data = [Vector2(0, 0.231214), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -13,49 +13,68 @@ point_count = 2
 offsets = PackedFloat32Array(0.0355556, 0.346667)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
+[sub_resource type="Gradient" id="Gradient_8v5v3"]
+offsets = PackedFloat32Array(0.128889, 0.542222, 1)
+colors = PackedColorArray(0.913725, 0.286275, 0, 1, 1, 1, 0.356863, 1, 1, 1, 0.356863, 0)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5y2q"]
 radius = 63.0317
 
-[node name="Umbrella" type="Node2D"]
-script = ExtResource("1_bi66l")
-data = ExtResource("2_lv31h")
+[node name="jetpack" type="Node2D"]
+script = ExtResource("1_8v5v3")
+data = ExtResource("2_8v5v3")
 
 [node name="Trail2D" type="Line2D" parent="."]
-position = Vector2(-67, -21)
+position = Vector2(-72, -40)
 closed = true
 width_curve = SubResource("Curve_lv31h")
 gradient = SubResource("Gradient_atksk")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-script = ExtResource("3_1dl8g")
+script = ExtResource("3_7kc6f")
 length = 50
 metadata/_custom_type_script = "uid://dlvqp6id4e7fb"
 
 [node name="Trail2D2" type="Line2D" parent="."]
-position = Vector2(84, -19)
+position = Vector2(84, -41)
 closed = true
 width_curve = SubResource("Curve_lv31h")
 gradient = SubResource("Gradient_atksk")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-script = ExtResource("3_1dl8g")
+script = ExtResource("3_7kc6f")
 length = 50
 metadata/_custom_type_script = "uid://dlvqp6id4e7fb"
 
+[node name="engineeffect" type="CPUParticles2D" parent="."]
+position = Vector2(-55, 28)
+amount = 40
+lifetime = 0.6
+speed_scale = 2.0
+randomness = 0.32
+emission_shape = 4
+emission_points = PackedVector2Array(0, 0, 125, 0)
+emission_colors = PackedColorArray()
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_8v5v3")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(6, -72)
-scale = Vector2(8, 8)
-texture = ExtResource("2_r5y2q")
+scale = Vector2(6, 6)
+texture = ExtResource("4_xadvp")
 offset = Vector2(0.25, 11.375)
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(5, -5)
+position = Vector2(7, -11)
 shape = SubResource("CircleShape2D_r5y2q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

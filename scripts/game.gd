@@ -20,16 +20,14 @@ func _ready() -> void:
 	lava = lava_scene.pick_random().instantiate()
 	lava.global_position = $lava_pos.global_position
 	call_deferred("add_child", lava)
-func _process(delta: float) -> void:
-	if lava != null:
-		lava.position.y -= 160 *delta
+
 
 func _on_layer_body_entered(body: Node2D) -> void:
 	if body is Player:
 		#$walls_1.global_position.y -= 380#768
 		var wall = wall_scene.pick_random().instantiate()
 		wall.area_entered.connect( _on_layer_body_entered)
-		wall.position = Vector2(0,0 - (786* wall_index) )
+		wall.position = Vector2(0,0 - (768* wall_index) )
 		#add_child(wall)
 		call_deferred("add_child", wall)
 		wall_index += 1

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c50tt217emvml"]
+
+[ext_resource type="Script" uid="uid://b584hmaowgnnc" path="res://resources/ItemData.gd" id="1_np6wl"]
+[ext_resource type="Texture2D" uid="uid://bkym38knaiyld" path="res://assets/sprites/ambrellas/ambrella_1.png" id="2_3esdg"]
+
+[resource]
+script = ExtResource("1_np6wl")
+item_name = "Umbrella"
+description = ""
+sprite = ExtResource("2_3esdg")
+fly_speed = 150.0
+durability = 10.0
+upgrade_to = "Jetpack"
+metadata/_custom_type_script = "uid://b584hmaowgnnc"

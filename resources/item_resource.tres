@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://bn1y1ctfrxyrk"]
+
+[ext_resource type="Script" uid="uid://b584hmaowgnnc" path="res://resources/ItemData.gd" id="1_xr4r7"]
+
+[resource]
+script = ExtResource("1_xr4r7")
+item_name = "Unnamed Item"
+description = ""
+fly_speed = 100.0
+direction_speed = 300.0
+durability = 10.0
+upgrade_to = ""
+metadata/_custom_type_script = "uid://b584hmaowgnnc"

@@ -1,44 +1,93 @@
-[gd_scene load_steps=7 format=3 uid="uid://crbqr24g5k10l"]
+[gd_scene load_steps=14 format=3 uid="uid://crbqr24g5k10l"]
 
-[ext_resource type="Texture2D" uid="uid://b647j4cqa3leg" path="res://assets/sprites/animation/background_animation/background_0000s_0000_Layer-4.png" id="1_f10td"]
-[ext_resource type="Texture2D" uid="uid://brtbaskjv5nvx" path="res://assets/sprites/animation/background_animation/background_0000s_0001_Layer-3.png" id="2_3w25c"]
-[ext_resource type="Texture2D" uid="uid://gebu0qxnplq6" path="res://assets/sprites/animation/background_animation/background_0000s_0002_Layer-2.png" id="3_sxvwp"]
-[ext_resource type="Texture2D" uid="uid://dirsmvi1mfkpk" path="res://assets/sprites/animation/background_animation/background_0000s_0003_Layer-1.png" id="4_pgx88"]
+[ext_resource type="Texture2D" uid="uid://6g7xl0cspm7v" path="res://assets/sprites/sprites/lava particals.png" id="1_pgx88"]
+[ext_resource type="Texture2D" uid="uid://wqxb3b3wens" path="res://assets/sprites/animation/lava_animation_2/lava_1_0000s_0000_Layer-0-copy-4.png" id="1_sxvwp"]
+[ext_resource type="Script" uid="uid://d3bk7df5vbj5e" path="res://scripts/lava.gd" id="1_w488u"]
+[ext_resource type="Texture2D" uid="uid://cadti8ldog1t" path="res://assets/sprites/animation/lava_animation_2/lava_1_0000s_0001_Layer-0-copy-3.png" id="2_pgx88"]
+[ext_resource type="Texture2D" uid="uid://bp3d51nmac4lo" path="res://assets/sprites/animation/lava_animation_2/lava_1_0000s_0002_Layer-0-copy-2.png" id="3_w488u"]
+[ext_resource type="Texture2D" uid="uid://c2ucsqw1u8pqf" path="res://assets/sprites/animation/lava_animation_2/lava_1_0000s_0003_Layer-0-copy-2.png" id="4_c1ovw"]
+[ext_resource type="Texture2D" uid="uid://qpk4nf370i06" path="res://assets/sprites/animation/lava_animation_2/lava_1_0000s_0004_Layer-0-copy-2.png" id="5_o14ui"]
+[ext_resource type="Texture2D" uid="uid://bnc06nquhcbal" path="res://assets/sprites/animation/lava_animation_2/lava_1_0000s_0005_Layer-0-copy-2.png" id="6_xful2"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_w488u"]
+[sub_resource type="Curve" id="Curve_w488u"]
+_limits = [-30.0, 90.0, 0.0, 1.0]
+_data = [Vector2(0, 54.8682), 0.0, 0.0, 0, 0, Vector2(0.988593, 16.7465), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_pgx88"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_w488u"]
+offsets = PackedFloat32Array(0.257778, 0.533333)
+colors = PackedColorArray(1, 0.807843, 0, 1, 0.994546, 0.00030758, 0.000169613, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lagav"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_f10td")
+"texture": ExtResource("1_sxvwp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_3w25c")
+"texture": ExtResource("2_pgx88")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_sxvwp")
+"texture": ExtResource("3_w488u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_pgx88")
+"texture": ExtResource("4_c1ovw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o14ui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xful2")
 }],
 "loop": true,
 "name": &"default",
-"speed": 12.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1ovw"]
-size = Vector2(32, 32)
+size = Vector2(864, 32)
 
 [node name="lava" type="Node2D"]
 z_index = 1
-position = Vector2(377, 1345)
-scale = Vector2(25.93, 25.93)
+position = Vector2(385, 1540)
+script = ExtResource("1_w488u")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-381, -485)
+amount = 10
+texture = ExtResource("1_pgx88")
+lifetime = 5.0
+randomness = 1.0
+emission_shape = 4
+emission_points = PackedVector2Array(50, 50, 250, 0, 450, 0, 700, 0)
+emission_colors = PackedColorArray()
+direction = Vector2(0, -1)
+spread = 32.84
+gravity = Vector2(0, 300)
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+angle_min = -50.0
+angle_max = 90.0
+angle_curve = SubResource("Curve_w488u")
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_pgx88")
+color_ramp = SubResource("Gradient_w488u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_w488u")
+sprite_frames = SubResource("SpriteFrames_lagav")
 autoplay = "default"
-frame_progress = 0.702561
+frame_progress = 0.486471
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, -438)
 shape = SubResource("RectangleShape2D_c1ovw")
+debug_color = Color(0.839147, 0.179143, 0.829327, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

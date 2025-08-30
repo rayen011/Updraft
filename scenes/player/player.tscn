@@ -1,40 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://dowvcw5pjqig8"]
+[gd_scene load_steps=5 format=3 uid="uid://dowvcw5pjqig8"]
 
 [ext_resource type="Script" uid="uid://co5jxdi8y8m3k" path="res://scripts/player/player.gd" id="1_8afob"]
+[ext_resource type="Texture2D" uid="uid://bisq5s8aruq2j" path="res://assets/sprites/sprites/player.png" id="2_dovo2"]
 
-[sub_resource type="Gradient" id="Gradient_x7p2l"]
-offsets = PackedFloat32Array(0.155844)
-colors = PackedColorArray(0, 0.364706, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8afob"]
-gradient = SubResource("Gradient_x7p2l")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
-size = Vector2(64, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dovo2"]
+radius = 37.6563
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x7p2l"]
 radius = 130.231
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 position = Vector2(377, 728)
-collision_mask = 4
+collision_mask = 20
 script = ExtResource("1_8afob")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_left = -5
-limit_right = 780
+limit_left = -1
+limit_right = 768
 limit_bottom = 1020
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_8afob")
+scale = Vector2(4, 4)
+texture = ExtResource("2_dovo2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_dovo2")
+position = Vector2(1, 9)
+shape = SubResource("CircleShape2D_dovo2")
 
 [node name="hand_marker" type="Marker2D" parent="."]
-position = Vector2(0, -88)
+position = Vector2(0, -83)
 
 [node name="pickupArea" type="Area2D" parent="."]
 
