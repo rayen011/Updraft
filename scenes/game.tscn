@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5tp1e03qcfd"]
+[gd_scene load_steps=9 format=3 uid="uid://c5tp1e03qcfd"]
 
 [ext_resource type="Script" uid="uid://bmfqbikvrhs7u" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://crbqr24g5k10l" path="res://scenes/lava.tscn" id="3_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://fcl8f25ohmq8" path="res://assets/parralax/background_1_0002_Exposure-1.png" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://cf5uy0dfw7j8r" path="res://scenes/walls/walls_1.tscn" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://tilm2yfeyho" path="res://assets/parralax/background_1_0000_Exposure-2.png" id="5_p57ef"]
+[ext_resource type="FontFile" uid="uid://1ttjfcs1wph3" path="res://fonts/Pixellari.ttf" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://dwoyl0t0i771b" path="res://scenes/player/item.tscn" id="7_gee14"]
+[ext_resource type="Resource" uid="uid://djqn48wtfndf3" path="res://resources/Speed Boost.tres" id="8_0tnpc"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uwrxv")
@@ -36,3 +39,25 @@ texture = ExtResource("5_p57ef")
 
 [node name="lava_pos" type="Marker2D" parent="."]
 position = Vector2(380, 1540)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="score_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 50.0
+offset_right = 170.0
+offset_bottom = 123.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_p57ef")
+theme_override_font_sizes/font_size = 46
+text = "9999"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="item" parent="." instance=ExtResource("7_gee14")]
+position = Vector2(386, 138)
+data = ExtResource("8_0tnpc")

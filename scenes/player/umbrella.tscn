@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://tcnpxwhmdpws"]
+[gd_scene load_steps=10 format=3 uid="uid://tcnpxwhmdpws"]
 
 [ext_resource type="Script" uid="uid://cqjv2ujc5ogp3" path="res://scripts/player/umbrella.gd" id="1_bi66l"]
 [ext_resource type="Resource" uid="uid://c50tt217emvml" path="res://resources/umbrella.tres" id="2_lv31h"]
@@ -15,6 +15,24 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5y2q"]
 radius = 63.0317
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lv31h"]
+bg_color = Color(0.682353, 0.231373, 0.266667, 0.286275)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atksk"]
+bg_color = Color(0.530202, 0.579729, 0.846628, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Umbrella" type="Node2D"]
 script = ExtResource("1_bi66l")
@@ -67,13 +85,15 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -49.0
-offset_top = -139.0
+offset_top = -109.0
 offset_right = 51.52
-offset_bottom = -125.615
+offset_bottom = -95.615
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(50, 13.5)
 size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_lv31h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_atksk")
 value = 70.0
 show_percentage = false
 

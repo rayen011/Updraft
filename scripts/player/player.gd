@@ -16,8 +16,11 @@ const RETURN_SPEED := 8.0
 var umbrella_scene := preload("res://scenes/player/umbrella.tscn")
 var umbrella: Node2D
 
+@onready var boost_timer: Timer = $boost_timer
+
 
 var up_speed:float
+var temp_speed:float
 # used for idle wobble (safer than OS/Time calls)
 var _idle_wobble_time := 0.0
 
@@ -26,6 +29,7 @@ var _idle_wobble_time := 0.0
 # ------------------------------
 func _ready() -> void:
 	umbrella = umbrella_scene.instantiate()
+	umbrella.fuel_out.connect(_on_fuel_out)
 	# attach umbrella to the hand marker so it follows automatically
 	up_speed = umbrella.data.fly_speed
 	$hand_marker.add_child(umbrella)
@@ -41,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	global_position.y -= up_speed * delta
 
 	# horizontal input
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("left", "right")
 	if direction != 0.0:
 		velocity.x = direction * umbrella.data.direction_speed
 	else:
@@ -104,8 +108,16 @@ func collect_item(item: ItemData) -> void:
 				print("Boost! Durability is now:", umbrella.current_durability)
 
 		"Speed Boost":
+			temp_speed = up_speed
 			up_speed += item.fly_speed
 			print("Boost! Fly speed is now:", up_speed)
-
+			boost_timer.start(5)
 		_:
 			print("Picked up:", item.item_name)
+
+func _on_fuel_out():
+	up_speed = 0
+
+
+func _on_boost_timer_timeout() -> void:
+	up_speed = temp_speed

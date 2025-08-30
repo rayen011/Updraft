@@ -52,7 +52,7 @@ animations = [{
 size = Vector2(864, 32)
 
 [node name="lava" type="Node2D"]
-z_index = 1
+z_index = 98
 position = Vector2(385, 1540)
 script = ExtResource("1_w488u")
 
@@ -90,4 +90,7 @@ position = Vector2(5, -438)
 shape = SubResource("RectangleShape2D_c1ovw")
 debug_color = Color(0.839147, 0.179143, 0.829327, 0.42)
 
+[node name="add_speed_timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="add_speed_timer" to="." method="_on_add_speed_timer_timeout"]

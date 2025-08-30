@@ -22,7 +22,7 @@ pattern_0 = SubResource("TileMapPattern_h00v7")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1b6da"]
 
 [node name="walls_1" type="Node2D"]
-z_index = 2
+z_index = 99
 script = ExtResource("1_h00v7")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://de2l0eilg41gh"]
+[gd_scene load_steps=13 format=3 uid="uid://de2l0eilg41gh"]
 
 [ext_resource type="Script" uid="uid://cqjv2ujc5ogp3" path="res://scripts/player/umbrella.gd" id="1_8v5v3"]
 [ext_resource type="Resource" uid="uid://bxw574tf2flee" path="res://resources/jetpack.tres" id="2_8v5v3"]
@@ -14,18 +14,44 @@ offsets = PackedFloat32Array(0.0355556, 0.346667)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_8v5v3"]
-offsets = PackedFloat32Array(0.128889, 0.542222, 1)
-colors = PackedColorArray(0.913725, 0.286275, 0, 1, 1, 1, 0.356863, 1, 1, 1, 0.356863, 0)
+offsets = PackedFloat32Array(0.0266667, 0.48, 1)
+colors = PackedColorArray(0.937255, 0.243137, 0.243137, 1, 0.941176, 0.752941, 0.345098, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_8v5v3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.368821, 0.644945), 0.0, 0.0, 0, 0, Vector2(0.988593, 0.227599), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_mkcvr"]
+offsets = PackedFloat32Array(0.128889, 0.413333, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.430057, 0.430057, 0.430057, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5y2q"]
 radius = 63.0317
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v5v3"]
+bg_color = Color(0.682353, 0.231373, 0.266667, 0.286275)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkcvr"]
+bg_color = Color(0.530202, 0.579729, 0.846628, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="jetpack" type="Node2D"]
 script = ExtResource("1_8v5v3")
 data = ExtResource("2_8v5v3")
 
 [node name="Trail2D" type="Line2D" parent="."]
-position = Vector2(-72, -40)
+position = Vector2(-66, -6)
 closed = true
 width_curve = SubResource("Curve_lv31h")
 gradient = SubResource("Gradient_atksk")
@@ -37,7 +63,7 @@ length = 50
 metadata/_custom_type_script = "uid://dlvqp6id4e7fb"
 
 [node name="Trail2D2" type="Line2D" parent="."]
-position = Vector2(84, -41)
+position = Vector2(78, -9)
 closed = true
 width_curve = SubResource("Curve_lv31h")
 gradient = SubResource("Gradient_atksk")
@@ -65,6 +91,24 @@ scale_amount_min = 5.0
 scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_8v5v3")
 
+[node name="engineloweffect" type="CPUParticles2D" parent="."]
+position = Vector2(-55, 28)
+amount = 150
+lifetime = 1.2
+randomness = 0.32
+emission_shape = 4
+emission_points = PackedVector2Array(0, 0, 125, 0)
+emission_colors = PackedColorArray()
+direction = Vector2(0, 1)
+spread = 25.54
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_8v5v3")
+color_ramp = SubResource("Gradient_mkcvr")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(6, -72)
 scale = Vector2(6, 6)
@@ -79,22 +123,24 @@ shape = SubResource("CircleShape2D_r5y2q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="handMarker" type="Marker2D" parent="."]
+position = Vector2(1, 59)
+
 [node name="durabilityBar" type="ProgressBar" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -49.0
-offset_top = -139.0
-offset_right = 51.52
-offset_bottom = -125.615
+offset_left = -64.0
+offset_top = -111.0
+offset_right = 67.0
+offset_bottom = -94.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(50, 13.5)
 size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_8v5v3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mkcvr")
 value = 70.0
 show_percentage = false
-
-[node name="handMarker" type="Marker2D" parent="."]
-position = Vector2(1, 59)

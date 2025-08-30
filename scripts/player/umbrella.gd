@@ -1,5 +1,8 @@
 extends Node2D
 class_name Umbrella
+
+signal fuel_out
+
 @onready var hand_marker: Marker2D = $handMarker
 
 
@@ -16,3 +19,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	current_durability -= .8 *delta
 	durability_bar.value = current_durability
+	check_durabilty()
+func check_durabilty():
+	if data.item_name == "Jetpack":
+		if current_durability < (data.durability *0.4):
+			$engineloweffect.emitting = true
+			$engineeffect.emitting = false
+		else:
+			$engineloweffect.emitting = false
+			$engineeffect.emitting = true
+	if current_durability <= 0:
+		fuel_out.emit()
+		if data.item_name == "Jetpack":
+			$engineloweffect.emitting = false
+			$engineeffect.emitting = false

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://djqn48wtfndf3"]
+
+[ext_resource type="Script" uid="uid://b584hmaowgnnc" path="res://resources/ItemData.gd" id="1_6gfsf"]
+[ext_resource type="Texture2D" uid="uid://df5fpkfp3arn6" path="res://assets/sprites/sprites/fly_boost.png" id="2_2kj6u"]
+
+[resource]
+script = ExtResource("1_6gfsf")
+item_name = "Speed Boost"
+description = ""
+sprite = ExtResource("2_2kj6u")
+fly_speed = 500.0
+direction_speed = 0.0
+durability = 0.0
+upgrade_to = ""
+metadata/_custom_type_script = "uid://b584hmaowgnnc"

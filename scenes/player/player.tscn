@@ -9,7 +9,7 @@ radius = 37.6563
 [sub_resource type="CircleShape2D" id="CircleShape2D_x7p2l"]
 radius = 130.231
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 position = Vector2(377, 728)
 collision_mask = 20
@@ -23,6 +23,7 @@ position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
 scale = Vector2(4, 4)
 texture = ExtResource("2_dovo2")
 
@@ -40,3 +41,8 @@ shape = SubResource("CircleShape2D_x7p2l")
 debug_color = Color(0.700634, 0.366549, 0.834473, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="boost_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="boost_timer" to="." method="_on_boost_timer_timeout"]
