@@ -1,12 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwoyl0t0i771b"]
+[gd_scene load_steps=11 format=3 uid="uid://dwoyl0t0i771b"]
 
 [ext_resource type="Script" uid="uid://bd2x1iwg7yqs2" path="res://scripts/player/pickup.gd" id="1_5uf52"]
 [ext_resource type="Resource" uid="uid://dvxvrqp4ds45k" path="res://resources/durability_boost.tres" id="2_htaxc"]
 [ext_resource type="Texture2D" uid="uid://df5fpkfp3arn6" path="res://assets/sprites/sprites/fly_boost.png" id="3_jgvy8"]
 [ext_resource type="Texture2D" uid="uid://cxhfre3qo7bxs" path="res://assets/sprites/sprites/glow_circle.png" id="4_jcu17"]
+[ext_resource type="AudioStream" uid="uid://bppam4x4eod03" path="res://audio/pickup.wav" id="5_iapr3"]
+[ext_resource type="AudioStream" uid="uid://bbax1ac8agfyc" path="res://audio/popup.mp3" id="6_odp7e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jcu17"]
 radius = 16.0312
+
+[sub_resource type="Animation" id="Animation_iapr3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_jcu17"]
 resource_name = "popup"
@@ -22,21 +39,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0.34, 0.34), Vector2(3, 3), Vector2(2, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_iapr3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_odp7e"]
@@ -68,6 +70,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_odp7e")
 }
 autoplay = "popup"
+
+[node name="pick_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_iapr3")
+volume_db = -4.637
+pitch_scale = 2.96
+
+[node name="popup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_odp7e")
+volume_db = 3.312
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

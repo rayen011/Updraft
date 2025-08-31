@@ -52,7 +52,7 @@ animations = [{
 size = Vector2(864, 32)
 
 [node name="lava" type="Node2D"]
-z_index = 98
+z_index = 4
 position = Vector2(385, 1540)
 script = ExtResource("1_w488u")
 

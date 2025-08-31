@@ -20,6 +20,10 @@ func _process(delta: float) -> void:
 	current_durability -= durability_take *delta
 	durability_bar.value = current_durability
 	check_durabilty()
+
+func take_damage(damage_amount: float) -> void:
+	current_durability -= damage_amount
+	
 func check_durabilty():
 	if data.item_name == "Jetpack":
 		if current_durability < (data.durability *0.4):
@@ -30,6 +34,6 @@ func check_durabilty():
 			$engineeffect.emitting = true
 	if current_durability <= 0:
 		fuel_out.emit()
-		if data.item_name == "Jetpack":
-			$engineloweffect.emitting = false
-			$engineeffect.emitting = false
+	if data.item_name == "Jetpack":
+		$engineloweffect.emitting = false
+		$engineeffect.emitting = false

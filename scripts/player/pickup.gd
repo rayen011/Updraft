@@ -4,6 +4,7 @@ class_name Item
 @export var data: ItemData   # Which item/boost this pickup represents
 var expired_timer = Timer.new()
 func _ready() -> void:
+	$popup.play()
 	expired_timer.autostart = true
 	expired_timer.one_shot = true
 	expired_timer.wait_time = 10
@@ -16,7 +17,13 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	var player
-	player = area.get_parent()
+	if area.get_parent().is_in_group("Player"):
+		player = area.get_parent()
+		$pick_audio.play()
+	elif area.get_parent().is_in_group("Umbrella"):
+		player = area.get_parent().get_parent()
+	else:
+		return
 	player.collect_item(data)
 	queue_free()   # remove the pickup after collection
 

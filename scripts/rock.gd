@@ -25,11 +25,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		# Example: apply effect to player
 		if effect_type == "durability_damage":
-			body.apply_durability_damage(effect_value)
-		elif effect_type == "speed_down":
-			body.apply_speed_modifier(-effect_value)
-		elif effect_type == "down_force":
-			body.apply_downward_push(effect_value)
-
+			if is_instance_valid(body):
+				body.take_damage(effect_value)
 		# Destroy the rock after hitting
 		#queue_free()

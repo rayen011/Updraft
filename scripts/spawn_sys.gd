@@ -23,7 +23,7 @@ func _ready() -> void:
 	spawn_timer.connect("timeout", Callable(self, "_on_my_timer_timeout"))
 	player = get_tree().get_first_node_in_group("Player")
 	
-	rock_timer.wait_time =randf_range(0.1, 0.5) 
+	rock_timer.wait_time =randf_range(2, 3) 
 	rock_timer.autostart = true
 	rock_timer.one_shot = false
 	rock_timer.timeout.connect(spawn_rock)
@@ -43,32 +43,30 @@ func spawn_item():
 		player = get_tree().get_first_node_in_group("Player")
 	var spawn_pos = player.position - Vector2(rand_x, rand_y)
 	spawn_pos.x = clamp(spawn_pos.x, 0, 500) # adjust cave width
+	
+	# This is the new logic to spawn different types of items
 	var item_rate = randf()
 	var item_picked
 	if item_rate <= 0.3:
-		item_picked = 1 #picked speed boost
+		item_picked = 1 # Speed Boost
 	else:
-		item_picked = 0 #picked durability boost
+		item_picked = 0 # Durability Boost
+	#else:
+		#item_picked = 2 # New Jetpack upgrade
 	
 	var item = items_scene.pick_random().instantiate()
-	item.data = items[item_picked]
+	# Assign the correct ItemData to the pickup.
+	item.data = items[item_picked] 
 	item.global_position = spawn_pos
 	items_container.add_child(item)
 	spawn_timer.wait_time = rng.randi_range(min_item_time_spwn,max_item_time_spwn)
+
 func spawn_rock():
 	player = get_tree().get_first_node_in_group("Player")
-	var rock_scene = preload("res://scenes/rock.tscn") # your rock scene path
+	var rock_scene = preload("res://scenes/rock.tscn")
 	var rock = rock_scene.instantiate()
-
-	# Spawn a little above the player, at random X
-	var spawn_x = randf_range(32,700)
-	var spawn_y = player.global_position.y - 700  # above the player
-	
-	rock.global_position = Vector2(spawn_x, spawn_y)
-
-	# Optional: give it a downward velocity if it's a RigidBody2D
-	if rock is RigidBody2D:
-		rock.linear_velocity = Vector2(0, randf_range(200, 350)) # fall speed
-
+	var rand_x = randf_range(0, 500)
+	var rand_y = randf_range(250, 350)
+	var spawn_pos = player.position - Vector2(rand_x, rand_y)
+	rock.global_position = spawn_pos
 	rock_container.add_child(rock)
-	rock_timer.wait_time =randf_range(0.1, 0.5) 

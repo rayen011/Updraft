@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5tp1e03qcfd"]
+[gd_scene load_steps=15 format=3 uid="uid://c5tp1e03qcfd"]
 
 [ext_resource type="Script" uid="uid://bmfqbikvrhs7u" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://crbqr24g5k10l" path="res://scenes/lava.tscn" id="3_lbhrr"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://dpu0ucgoedy04" path="res://scripts/spawn_sys.gd" id="8_gee14"]
 [ext_resource type="Script" uid="uid://b584hmaowgnnc" path="res://resources/ItemData.gd" id="9_kvpfn"]
 [ext_resource type="Resource" uid="uid://dvxvrqp4ds45k" path="res://resources/durability_boost.tres" id="9_vtaks"]
+[ext_resource type="Script" uid="uid://dw67phlcde4gc" path="res://scripts/player/ItemDatabase.gd" id="12_dinhu"]
+[ext_resource type="AudioStream" uid="uid://cjodhnq0pihmh" path="res://audio/in game music.mp3" id="13_kvuet"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 3
@@ -82,8 +84,14 @@ items = Array[ExtResource("9_kvpfn")]([ExtResource("9_vtaks"), ExtResource("8_0t
 
 [node name="rock_container" type="Node" parent="."]
 
-[node name="item" parent="." instance=ExtResource("7_gee14")]
-position = Vector2(312, 288)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kvuet")
+
+[node name="database" type="Node" parent="." groups=["ItemDatabase"]]
+script = ExtResource("12_dinhu")
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_kvuet")
+volume_db = -7.287
+autoplay = true
+max_distance = 999999.0

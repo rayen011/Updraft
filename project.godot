@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="UpDraft"
-run/main_scene="uid://c5tp1e03qcfd"
+run/main_scene="uid://dsg5q8hemlrtn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/image="uid://d4cxuacgcc43m"
+config/icon="uid://xlc28f6c8ybe"
 
 [display]
 
@@ -29,6 +32,7 @@ enabled=PackedStringArray("res://addons/trail_2d/plugin.cfg")
 
 Player=""
 Game=""
+ItemDatabase=""
 
 [input]
 

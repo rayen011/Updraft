@@ -13,11 +13,16 @@ const MAX_TILT := 12.0 * (PI / 180.0)    # 12 degrees -> radians
 const SWING_SPEED := 5.0
 const RETURN_SPEED := 8.0
 
-var umbrella_scene := preload("res://scenes/player/lava_umrella.tscn")
+# Exported scene variables for different umbrellas
+@export var umbrella_scene := preload("res://scenes/player/jetpack.tscn")
+@export var jetpack_scene := preload("res://scenes/player/jetpack.tscn")
+
 var umbrella: Node2D
 
 @onready var boost_timer: Timer = $boost_timer
 
+# Signal to request an upgrade
+signal upgrade_request(item_scene: PackedScene)
 
 var up_speed:float
 var temp_speed:float
@@ -48,38 +53,45 @@ func _physics_process(delta: float) -> void:
 
 	# horizontal input
 	var direction := Input.get_axis("left", "right")
-	if direction != 0.0:
-		velocity.x = direction * umbrella.data.direction_speed
-	else:
-		# smooth deceleration toward zero
-		velocity.x = lerp(velocity.x, 0.0, 10.0 * delta)
+	
+	# horizontal movement
+	velocity.x = direction * umbrella.data.direction_speed
 
-	# umbrella swing
-	swing_umbrella(direction, delta)
-	swing_player(direction, delta)
-	# move the character (CharacterBody2D uses its velocity property)
+	# clamp player to the screen
+	global_position.x = clamp(global_position.x, 0, 500)
 	move_and_slide()
 
+	# swing animations
+	swing_umbrella(direction, delta)
+	swing_player(direction, delta)
+
 # ------------------------------
-# Swing logic
+# Internal functions
 # ------------------------------
+func _on_fuel_out() -> void:
+	print("Out of fuel!")
+	up_speed = -100
+	
+func _on_boost_timer_timeout():
+	has_booster = false
+	temp_speed = up_speed
+	print("Boost ended. Speed is now:", up_speed)
+	
 func swing_umbrella(direction: float, delta: float) -> void:
 	var target_angle: float = 0.0
 
 	if direction < 0.0:
-		target_angle = -MAX_TILT
-	elif direction > 0.0:
 		target_angle = MAX_TILT
+	elif direction > 0.0:
+		target_angle = -MAX_TILT
 	else:
 		# gentle idle wobble (3 degrees)
 		var wobble := 3.0 * (PI / 180.0)
 		target_angle = sin(_idle_wobble_time * 2.5) * wobble
 
-	# correct conditional expression (GDScript uses: X if cond else Y)
+	# use lerp_angle for smooth rotation across wrap-around
 	var tilt_speed := RETURN_SPEED if direction == 0.0 else SWING_SPEED
 	var weight = clamp(tilt_speed * delta, 0.0, 1.0)
-
-	# use lerp_angle for smooth rotation across wrap-around
 	umbrella.rotation = lerp_angle(umbrella.rotation, target_angle, weight)
 
 func swing_player(direction: float, delta: float) -> void:
@@ -116,19 +128,12 @@ func collect_item(item: ItemData) -> void:
 				up_speed += item.fly_speed
 				print("Boost! Fly speed is now:", up_speed)
 				boost_timer.start(5)
-			else:
-				up_speed += item.fly_speed
-				print("Boost Again! Fly speed is now:", up_speed)
-		_:
-			print("Picked up:", item.item_name)
 
-func _on_fuel_out():
-	up_speed = 0
+		"Jetpack":
+			# Instead of upgrading directly, we tell the Game Manager to do it.
+			upgrade_request.emit(jetpack_scene)
 
-
-func _on_boost_timer_timeout() -> void:
-	up_speed = temp_speed
-	has_booster = false
-	
-func apply_durability_damage(effect_value):
-	umbrella.current_durability -= umbrella.current_durability*effect_value
+func take_damage(damage_amount: float) -> void:
+	if is_instance_valid(umbrella):
+		umbrella.take_damage(damage_amount)
+		print("Player takes damage: ", damage_amount)

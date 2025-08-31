@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsg5q8hemlrtn"]
+
+[ext_resource type="Texture2D" uid="uid://dxsa3q65elmf2" path="res://art/splash_screen.png" id="1_avsyq"]
+[ext_resource type="Script" uid="uid://bx7k1s07f8kcs" path="res://scripts/ui/splash_screen.gd" id="1_kxl5h"]
+[ext_resource type="PackedScene" uid="uid://b2etfd32kfmgv" path="res://scenes/interfaces/start_screen_i_nterface.tscn" id="2_fp1pk"]
+[ext_resource type="FontFile" uid="uid://1ttjfcs1wph3" path="res://fonts/Pixellari.ttf" id="4_xt3kg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m4jn"]
+bg_color = Color(0.144542, 0.0553654, 0.114492, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.987638, 0.609982, 0.531737, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbfi0"]
+bg_color = Color(0.847059, 0.478431, 0.411765, 0.854902)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="splash_screen" type="Control" node_paths=PackedStringArray("splash_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kxl5h")
+load_scene = ExtResource("2_fp1pk")
+splash_screen = NodePath("CenterContainer/TextureRect")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.030271, 3.1485e-05, 0.0804188, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_avsyq")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 2
+offset_left = 126.0
+offset_top = 776.0
+offset_right = 642.0
+offset_bottom = 829.0
+theme_override_fonts/font = ExtResource("4_xt3kg")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/background = SubResource("StyleBoxFlat_2m4jn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vbfi0")
+value = 70.0

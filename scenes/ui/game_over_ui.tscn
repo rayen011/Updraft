@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckqo5r0gwidfn"]
+
+[ext_resource type="Script" uid="uid://beedy816fjq8n" path="res://scripts/ui/game_over_ui.gd" id="1_i5oy2"]
+[ext_resource type="FontFile" uid="uid://1ttjfcs1wph3" path="res://fonts/Pixellari.ttf" id="2_u4odh"]
+[ext_resource type="AudioStream" uid="uid://ck31vmst4x00w" path="res://audio/lose.wav" id="3_sxdiq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4odh"]
+bg_color = Color(0.839216, 0.423529, 0.329412, 0.647059)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(5, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxdiq"]
+bg_color = Color(0.839216, 0.423529, 0.329412, 0.647059)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(5, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pgjlk"]
+bg_color = Color(0.916428, 0.571218, 0.49007, 0.647059)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkgcp"]
+bg_color = Color(0.699297, 0.320589, 0.235936, 0.647059)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6o2nj"]
+bg_color = Color(0.839216, 0.423529, 0.329412, 0.647059)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(5, 10)
+
+[node name="game_over_ui" type="Control"]
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i5oy2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 179.0
+offset_right = -15.0
+offset_bottom = -179.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 138.0
+offset_top = -198.0
+offset_right = -138.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+mouse_filter = 0
+
+[node name="Label_final_score" type="Label" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_u4odh")
+theme_override_font_sizes/font_size = 71
+text = "distance: 9999m"
+horizontal_alignment = 1
+
+[node name="restart_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_u4odh")
+theme_override_font_sizes/font_size = 96
+theme_override_styles/focus = SubResource("StyleBoxFlat_u4odh")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_sxdiq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pgjlk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nkgcp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6o2nj")
+text = "Restart"
+
+[node name="lose_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sxdiq")
+volume_db = 1.988
+pitch_scale = 1.82
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
