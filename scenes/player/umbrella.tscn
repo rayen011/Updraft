@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cqjv2ujc5ogp3" path="res://scripts/player/umbrella.gd" id="1_bi66l"]
 [ext_resource type="Resource" uid="uid://c50tt217emvml" path="res://resources/umbrella.tres" id="2_lv31h"]
-[ext_resource type="Texture2D" uid="uid://bkym38knaiyld" path="res://assets/sprites/ambrellas/ambrella_1.png" id="2_r5y2q"]
 [ext_resource type="Script" uid="uid://dlvqp6id4e7fb" path="res://addons/trail_2d/trail_2d.gd" id="3_1dl8g"]
+[ext_resource type="Texture2D" uid="uid://44jieex7ynjc" path="res://assets/sprites/ambrellas/ambrella_2.png" id="3_lv31h"]
 
 [sub_resource type="Curve" id="Curve_lv31h"]
 _data = [Vector2(0, 0.231214), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -38,8 +38,14 @@ corner_radius_bottom_left = 5
 script = ExtResource("1_bi66l")
 data = ExtResource("2_lv31h")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6, -72)
+scale = Vector2(4, 4)
+texture = ExtResource("3_lv31h")
+offset = Vector2(0.25, 11.375)
+
 [node name="Trail2D" type="Line2D" parent="."]
-position = Vector2(-67, -21)
+position = Vector2(-51, -34)
 closed = true
 width_curve = SubResource("Curve_lv31h")
 gradient = SubResource("Gradient_atksk")
@@ -51,7 +57,7 @@ length = 50
 metadata/_custom_type_script = "uid://dlvqp6id4e7fb"
 
 [node name="Trail2D2" type="Line2D" parent="."]
-position = Vector2(84, -19)
+position = Vector2(63, -34)
 closed = true
 width_curve = SubResource("Curve_lv31h")
 gradient = SubResource("Gradient_atksk")
@@ -62,18 +68,12 @@ script = ExtResource("3_1dl8g")
 length = 50
 metadata/_custom_type_script = "uid://dlvqp6id4e7fb"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(6, -72)
-scale = Vector2(8, 8)
-texture = ExtResource("2_r5y2q")
-offset = Vector2(0.25, 11.375)
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(5, -5)
+position = Vector2(4, -25)
 shape = SubResource("CircleShape2D_r5y2q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -98,4 +98,4 @@ value = 70.0
 show_percentage = false
 
 [node name="handMarker" type="Marker2D" parent="."]
-position = Vector2(1, 59)
+position = Vector2(1, 21)

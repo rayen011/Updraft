@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=768
 window/size/viewport_height=1024
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
@@ -27,6 +28,7 @@ enabled=PackedStringArray("res://addons/trail_2d/plugin.cfg")
 [global_group]
 
 Player=""
+Game=""
 
 [input]
 
@@ -51,10 +53,11 @@ left={
 2d_physics/layer_4="lava_rock"
 2d_physics/layer_5="lava"
 2d_physics/layer_6="pickup item"
+2d_physics/layer_7="pickArea"
 
 [physics]
 
-2d/default_gravity=0.0
+2d/default_gravity=300.0
 
 [rendering]
 

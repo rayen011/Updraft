@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ObsData" load_steps=3 format=3 uid="uid://cbdd8sgmpt8mg"]
+
+[ext_resource type="Script" uid="uid://coxtdgjxrh4rw" path="res://resources/obstacles/ObsData.gd" id="1_0wxtj"]
+[ext_resource type="Texture2D" uid="uid://cg2v2x13uvfj1" path="res://assets/sprites/obs/lava_rock.png" id="2_qnxtf"]
+
+[resource]
+script = ExtResource("1_0wxtj")
+item_name = "Small Rock"
+description = "rocks that damage umbrella's durability"
+sprite = ExtResource("2_qnxtf")
+sprite_size = Vector2(16, 16)
+durabilit_damage = 1.0
+direction_speed = 0.0
+down_speed = 0.0
+metadata/_custom_type_script = "uid://coxtdgjxrh4rw"

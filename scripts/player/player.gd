@@ -13,7 +13,7 @@ const MAX_TILT := 12.0 * (PI / 180.0)    # 12 degrees -> radians
 const SWING_SPEED := 5.0
 const RETURN_SPEED := 8.0
 
-var umbrella_scene := preload("res://scenes/player/umbrella.tscn")
+var umbrella_scene := preload("res://scenes/player/lava_umrella.tscn")
 var umbrella: Node2D
 
 @onready var boost_timer: Timer = $boost_timer
@@ -21,6 +21,7 @@ var umbrella: Node2D
 
 var up_speed:float
 var temp_speed:float
+var has_booster:bool = false
 # used for idle wobble (safer than OS/Time calls)
 var _idle_wobble_time := 0.0
 
@@ -40,7 +41,8 @@ func _ready() -> void:
 # ------------------------------
 func _physics_process(delta: float) -> void:
 	_idle_wobble_time += delta
-
+	if velocity.y >0:
+		velocity.y = -1/2
 	# constant upward motion
 	global_position.y -= up_speed * delta
 
@@ -108,10 +110,15 @@ func collect_item(item: ItemData) -> void:
 				print("Boost! Durability is now:", umbrella.current_durability)
 
 		"Speed Boost":
-			temp_speed = up_speed
-			up_speed += item.fly_speed
-			print("Boost! Fly speed is now:", up_speed)
-			boost_timer.start(5)
+			if !has_booster:
+				has_booster = true
+				temp_speed = up_speed
+				up_speed += item.fly_speed
+				print("Boost! Fly speed is now:", up_speed)
+				boost_timer.start(5)
+			else:
+				up_speed += item.fly_speed
+				print("Boost Again! Fly speed is now:", up_speed)
 		_:
 			print("Picked up:", item.item_name)
 
@@ -121,3 +128,7 @@ func _on_fuel_out():
 
 func _on_boost_timer_timeout() -> void:
 	up_speed = temp_speed
+	has_booster = false
+	
+func apply_durability_damage(effect_value):
+	umbrella.current_durability -= umbrella.current_durability*effect_value

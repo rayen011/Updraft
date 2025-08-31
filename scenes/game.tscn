@@ -1,41 +1,56 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5tp1e03qcfd"]
+[gd_scene load_steps=13 format=3 uid="uid://c5tp1e03qcfd"]
 
 [ext_resource type="Script" uid="uid://bmfqbikvrhs7u" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://crbqr24g5k10l" path="res://scenes/lava.tscn" id="3_lbhrr"]
-[ext_resource type="Texture2D" uid="uid://fcl8f25ohmq8" path="res://assets/parralax/background_1_0002_Exposure-1.png" id="4_iywne"]
+[ext_resource type="Texture2D" uid="uid://dqkr52a5fqm4o" path="res://assets/parralax/background_lava222.png" id="4_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cf5uy0dfw7j8r" path="res://scenes/walls/walls_1.tscn" id="4_lbhrr"]
-[ext_resource type="Texture2D" uid="uid://tilm2yfeyho" path="res://assets/parralax/background_1_0000_Exposure-2.png" id="5_p57ef"]
+[ext_resource type="Texture2D" uid="uid://1kbqjbll5x73" path="res://assets/parralax/layer_2_spikes.png" id="5_kvpfn"]
 [ext_resource type="FontFile" uid="uid://1ttjfcs1wph3" path="res://fonts/Pixellari.ttf" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://dwoyl0t0i771b" path="res://scenes/player/item.tscn" id="7_gee14"]
 [ext_resource type="Resource" uid="uid://djqn48wtfndf3" path="res://resources/Speed Boost.tres" id="8_0tnpc"]
+[ext_resource type="Script" uid="uid://dpu0ucgoedy04" path="res://scripts/spawn_sys.gd" id="8_gee14"]
+[ext_resource type="Script" uid="uid://b584hmaowgnnc" path="res://resources/ItemData.gd" id="9_kvpfn"]
+[ext_resource type="Resource" uid="uid://dvxvrqp4ds45k" path="res://resources/durability_boost.tres" id="9_vtaks"]
 
-[node name="Game" type="Node2D"]
+[sub_resource type="Environment" id="Environment_kvuet"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.47
+glow_strength = 0.7
+glow_bloom = 0.13
+glow_blend_mode = 1
+
+[node name="Game" type="Node2D" groups=["Game"]]
 script = ExtResource("1_uwrxv")
 wall_scene = Array[PackedScene]([ExtResource("4_lbhrr")])
 lava_scene = Array[PackedScene]([ExtResource("3_lbhrr")])
 
 [node name="playerSpawn" type="Marker2D" parent="."]
-position = Vector2(380, 623)
+position = Vector2(380, 703)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(380, 498)
+position = Vector2(-4, -1)
 motion_scale = Vector2(0, 0.5)
-motion_mirroring = Vector2(0, 1717.53)
+motion_mirroring = Vector2(0, 1017.13)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(10, 0)
-texture = ExtResource("4_iywne")
+modulate = Color(0.492237, 0.492237, 0.492237, 1)
+position = Vector2(4, 0)
+texture = ExtResource("4_kvpfn")
+centered = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(390, 498)
-motion_scale = Vector2(0, 2)
-motion_mirroring = Vector2(0, 1400)
+position = Vector2(390, 506)
+motion_scale = Vector2(0, 1.5)
+motion_mirroring = Vector2(0, 1500)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-modulate = Color(1, 1, 1, 0.478431)
-texture = ExtResource("5_p57ef")
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(-390, -506)
+texture = ExtResource("5_kvpfn")
+centered = false
 
 [node name="lava_pos" type="Marker2D" parent="."]
 position = Vector2(380, 1540)
@@ -58,6 +73,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="spawn_sys" type="Node" parent="."]
+script = ExtResource("8_gee14")
+items_scene = Array[PackedScene]([ExtResource("7_gee14")])
+items = Array[ExtResource("9_kvpfn")]([ExtResource("9_vtaks"), ExtResource("8_0tnpc")])
+
+[node name="items_container" type="Node" parent="."]
+
+[node name="rock_container" type="Node" parent="."]
+
 [node name="item" parent="." instance=ExtResource("7_gee14")]
-position = Vector2(386, 138)
-data = ExtResource("8_0tnpc")
+position = Vector2(312, 288)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kvuet")

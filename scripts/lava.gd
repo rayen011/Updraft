@@ -19,4 +19,4 @@ func _process(delta: float) -> void:
 
 func _on_add_speed_timer_timeout() -> void:
 	print("added speed")
-	up_speed += 10
+	up_speed += 5

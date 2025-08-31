@@ -1,20 +1,13 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dvxvrqp4ds45k"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dvxvrqp4ds45k"]
 
 [ext_resource type="Script" uid="uid://b584hmaowgnnc" path="res://resources/ItemData.gd" id="1_fmcen"]
-
-[sub_resource type="Gradient" id="Gradient_fmcen"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0, 0.486275, 0.839216, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5m4na"]
-gradient = SubResource("Gradient_fmcen")
-fill_from = Vector2(0, 0.0603175)
+[ext_resource type="Texture2D" uid="uid://b31vc40mv6lub" path="res://assets/sprites/sprites/durability_icon.png" id="2_5m4na"]
 
 [resource]
 script = ExtResource("1_fmcen")
 item_name = "Durability Boost"
 description = "Extends the umbrella's life"
-sprite = SubResource("GradientTexture2D_5m4na")
+sprite = ExtResource("2_5m4na")
 fly_speed = 0.0
 direction_speed = 0.0
 durability = 3.0

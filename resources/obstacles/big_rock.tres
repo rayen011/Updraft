@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ObsData" load_steps=3 format=3 uid="uid://c5luig18wtok8"]
+
+[ext_resource type="Script" uid="uid://coxtdgjxrh4rw" path="res://resources/obstacles/ObsData.gd" id="1_q3jfx"]
+[ext_resource type="Texture2D" uid="uid://bjnpmf3xyxc0b" path="res://assets/sprites/obs/big_rock.png" id="2_2m12i"]
+
+[resource]
+script = ExtResource("1_q3jfx")
+item_name = "Big Rock"
+description = "rocks that's knock player down "
+sprite = ExtResource("2_2m12i")
+sprite_size = Vector2(32, 32)
+durabilit_damage = 2.0
+direction_speed = 0.0
+down_speed_rate = 10.0
+metadata/_custom_type_script = "uid://coxtdgjxrh4rw"

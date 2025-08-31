@@ -9,6 +9,7 @@ item_name = "Umbrella"
 description = ""
 sprite = ExtResource("2_3esdg")
 fly_speed = 150.0
+direction_speed = 300.0
 durability = 10.0
 upgrade_to = "Jetpack"
 metadata/_custom_type_script = "uid://b584hmaowgnnc"

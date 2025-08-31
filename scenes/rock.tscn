@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca0ors3pcqa42"]
+
+[ext_resource type="Texture2D" uid="uid://cg2v2x13uvfj1" path="res://assets/sprites/obs/lava_rock.png" id="1_1di36"]
+[ext_resource type="Script" uid="uid://ljkb0p8ol3lp" path="res://scripts/rock.gd" id="1_mek2u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mek2u"]
+radius = 21.0238
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1di36"]
+radius = 23.0217
+
+[node name="rock" type="RigidBody2D"]
+collision_layer = 8
+mass = 0.008
+gravity_scale = 0.5
+script = ExtResource("1_mek2u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_1di36")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mek2u")
+
+[node name="detection_area" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+shape = SubResource("CircleShape2D_1di36")
+debug_color = Color(0.678431, 0.494118, 0.294118, 0.227451)
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]

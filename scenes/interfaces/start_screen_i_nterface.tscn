@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3 uid="uid://b2etfd32kfmgv"]
+
+[ext_resource type="Script" uid="uid://d2xxh06gojcvv" path="res://scripts/interfaces/start_screen_i_nterface.gd" id="1_6t4ve"]
+[ext_resource type="Texture2D" uid="uid://d4cxuacgcc43m" path="res://art/background.png" id="1_hs0np"]
+[ext_resource type="FontFile" uid="uid://1ttjfcs1wph3" path="res://fonts/Pixellari.ttf" id="2_jvt2u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nepj8"]
+bg_color = Color(0.88252, 0.497459, 0.383072, 0.529412)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekc3f"]
+bg_color = Color(0.88252, 0.497459, 0.383072, 0.529412)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvt2u"]
+bg_color = Color(0.88252, 0.497459, 0.383072, 0.529412)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spbv2"]
+bg_color = Color(0.747714, 0.36539, 0.25142, 0.529412)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t4ve"]
+bg_color = Color(0.866667, 0.470588, 0.352941, 0.529412)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+shadow_offset = Vector2(3, 10)
+
+[sub_resource type="Curve" id="Curve_6t4ve"]
+_limits = [0.01, 7.90607, 0.0, 1.0]
+_data = [Vector2(0, 0.921812), 0.0, 4.31188, 0, 0, Vector2(0.365019, 0.577518), 0.0, 0.0, 0, 0, Vector2(0.680608, 1.95469), 0.0, 0.0, 0, 0, Vector2(0.878327, 0.184038), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_jvt2u"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.285171, 0), 0.0, 0.0, 0, 0, Vector2(0.638783, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_6t4ve"]
+offsets = PackedFloat32Array(0.0488889, 0.897778)
+colors = PackedColorArray(0.988235, 0.94902, 0.592157, 1, 0.862745, 0.309804, 0.301961, 1)
+
+[node name="start_screenINterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6t4ve")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hs0np")
+centered = false
+
+[node name="play_b" type="Button" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 613.0
+offset_right = 267.0
+offset_bottom = 728.0
+theme_override_fonts/font = ExtResource("2_jvt2u")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxFlat_nepj8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ekc3f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jvt2u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_spbv2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6t4ve")
+text = "PLAY"
+
+[node name="quit_b" type="Button" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 749.0
+offset_right = 267.0
+offset_bottom = 864.0
+theme_override_fonts/font = ExtResource("2_jvt2u")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxFlat_nepj8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ekc3f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jvt2u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_spbv2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6t4ve")
+text = "QUIT"
+
+[node name="effect" type="CPUParticles2D" parent="."]
+position = Vector2(421, 502)
+amount = 40
+lifetime = 2.0
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(768, 800)
+gravity = Vector2(0, -150)
+orbit_velocity_min = 0.01
+orbit_velocity_max = 0.05
+orbit_velocity_curve = SubResource("Curve_6t4ve")
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_jvt2u")
+color = Color(0.937255, 0.67451, 0.427451, 1)
+color_ramp = SubResource("Gradient_6t4ve")
+
+[connection signal="pressed" from="play_b" to="." method="_on_play_b_pressed"]
+[connection signal="pressed" from="quit_b" to="." method="_on_quit_b_pressed"]

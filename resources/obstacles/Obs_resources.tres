@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ObsData" load_steps=2 format=3 uid="uid://cabmf8xmvcxsl"]
+
+[ext_resource type="Script" uid="uid://coxtdgjxrh4rw" path="res://resources/obstacles/ObsData.gd" id="1_480wy"]
+
+[resource]
+script = ExtResource("1_480wy")
+item_name = "Small Rock"
+description = "rocks that damage umbrella's durability"
+sprite_size = Vector2(0, 0)
+durabilit_damage = 100.0
+direction_speed = 100.0
+down_speed = 150.0
+metadata/_custom_type_script = "uid://coxtdgjxrh4rw"

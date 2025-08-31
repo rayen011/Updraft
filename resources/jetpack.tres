@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bxw574tf2flee"]
 
 [ext_resource type="Script" uid="uid://b584hmaowgnnc" path="res://resources/ItemData.gd" id="1_4w7a6"]
-[ext_resource type="Texture2D" uid="uid://crpps4l8amcnj" path="res://assets/sprites/ambrellas/jetpack.png" id="2_1mm8t"]
+[ext_resource type="Texture2D" uid="uid://dydr4180f1tjs" path="res://assets/sprites/ambrellas/jetpack2.png" id="2_1mm8t"]
 
 [resource]
 script = ExtResource("1_4w7a6")
@@ -9,7 +9,7 @@ item_name = "Jetpack"
 description = ""
 sprite = ExtResource("2_1mm8t")
 fly_speed = 200.0
-direction_speed = 400.0
+direction_speed = 240.0
 durability = 25.0
-upgrade_to = ""
+upgrade_to = "Lava Umbrella"
 metadata/_custom_type_script = "uid://b584hmaowgnnc"

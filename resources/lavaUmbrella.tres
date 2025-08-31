@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cr7sp5cqn1tm0"]
+
+[ext_resource type="Script" uid="uid://b584hmaowgnnc" path="res://resources/ItemData.gd" id="1_dc6wl"]
+[ext_resource type="Texture2D" uid="uid://caikew1xjuh3r" path="res://assets/sprites/ambrellas/ambrella_3.png" id="2_6vvo7"]
+
+[resource]
+script = ExtResource("1_dc6wl")
+item_name = "Lava Umbrella"
+description = ""
+sprite = ExtResource("2_6vvo7")
+fly_speed = 300.0
+direction_speed = 350.0
+durability = 40.0
+upgrade_to = ""
+metadata/_custom_type_script = "uid://b584hmaowgnnc"

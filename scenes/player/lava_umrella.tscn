@@ -1,0 +1,128 @@
+[gd_scene load_steps=13 format=3 uid="uid://gdoldwwlmxy8"]
+
+[ext_resource type="Script" uid="uid://cqjv2ujc5ogp3" path="res://scripts/player/umbrella.gd" id="1_ok465"]
+[ext_resource type="Resource" uid="uid://cr7sp5cqn1tm0" path="res://resources/lavaUmbrella.tres" id="2_x5gua"]
+[ext_resource type="Texture2D" uid="uid://caikew1xjuh3r" path="res://assets/sprites/ambrellas/ambrella_3.png" id="3_dvaq0"]
+[ext_resource type="Script" uid="uid://dlvqp6id4e7fb" path="res://addons/trail_2d/trail_2d.gd" id="4_6rwr5"]
+[ext_resource type="Texture2D" uid="uid://6g7xl0cspm7v" path="res://assets/sprites/sprites/lava particals.png" id="5_x5gua"]
+
+[sub_resource type="Curve" id="Curve_lv31h"]
+_data = [Vector2(0, 0.231214), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_atksk"]
+offsets = PackedFloat32Array(0.0355556, 0.346667)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5y2q"]
+radius = 63.0317
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lv31h"]
+bg_color = Color(0.682353, 0.231373, 0.266667, 0.286275)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atksk"]
+bg_color = Color(0.530202, 0.579729, 0.846628, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Curve" id="Curve_dvaq0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.528517, 0.321035), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_6rwr5"]
+offsets = PackedFloat32Array(0.124444, 0.48, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0.0784314, 0, 1, 1, 0.0784314, 0, 0)
+
+[node name="lava_umrella" type="Node2D"]
+script = ExtResource("1_ok465")
+data = ExtResource("2_x5gua")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6, -72)
+scale = Vector2(4, 4)
+texture = ExtResource("3_dvaq0")
+offset = Vector2(0.25, 11.375)
+
+[node name="Trail2D" type="Line2D" parent="."]
+position = Vector2(-49, -39)
+closed = true
+width_curve = SubResource("Curve_lv31h")
+gradient = SubResource("Gradient_atksk")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("4_6rwr5")
+length = 50
+metadata/_custom_type_script = "uid://dlvqp6id4e7fb"
+
+[node name="Trail2D2" type="Line2D" parent="."]
+position = Vector2(63, -35)
+closed = true
+width_curve = SubResource("Curve_lv31h")
+gradient = SubResource("Gradient_atksk")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("4_6rwr5")
+length = 50
+metadata/_custom_type_script = "uid://dlvqp6id4e7fb"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, -25)
+shape = SubResource("CircleShape2D_r5y2q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="durabilityBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -109.0
+offset_right = 51.52
+offset_bottom = -95.615
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(50, 13.5)
+size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_lv31h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_atksk")
+value = 70.0
+show_percentage = false
+
+[node name="handMarker" type="Marker2D" parent="."]
+position = Vector2(1, 21)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-42, -45)
+amount = 20
+texture = ExtResource("5_x5gua")
+randomness = 0.63
+emission_shape = 4
+emission_points = PackedVector2Array(0, 0, 20, -10, 40, -20, 80, 0, 70, -30)
+emission_colors = PackedColorArray()
+direction = Vector2(0, 1)
+gravity = Vector2(0, -300)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.1
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_dvaq0")
+color = Color(1, 0.972549, 0.0745098, 1)
+color_ramp = SubResource("Gradient_6rwr5")
